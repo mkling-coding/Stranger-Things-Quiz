@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html { 
+    background: url(images/stranger_things_bg.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    padding-top: 10px;
+}
+
+#main-div {
+    background: white;
+    min-width: 400px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+    padding: 15px 0px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#main-div h2, #main-div p {
+    padding: 5px 20px;
+}
+
+#start-p {
+    display: block;
+}
+
+#welcome {
+    display: block;
+}
+
+#q-and-a {
+    display: none;
+}
+
+#score {
+    display: none;
+}
+
+#question {
+    margin-bottom: 10px;
+}
+
+.choice-btn {
+    width: 90%;
+    background: none;
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding: 15px 0px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+#next-btn {
+    border: 1px solid black;
+    background: green;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 50px;
+    margin-top: 15px;
+    width: 50%;
+    font-size: 1.2rem;
+}
+
+#next-btn:hover {
+    background: rgb(0, 83, 0);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#score {
+    margin-top: 10px;
+}
