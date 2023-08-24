@@ -26,6 +26,10 @@ const reset = () => {
         document.querySelector('#choices').children[i].style.backgroundColor = 'white';
         document.querySelector('#choices').children[i].style.color = 'black';
     }
+
+    for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
+        document.querySelector('#choices').children[i].disabled = false;
+    }
 }
 
 // Function gets a random question and replaces text in Q and A section with
@@ -41,6 +45,10 @@ const answer = () => {
         // Changes background color of clicked answer to green and text color to white
         event.target.style.backgroundColor = 'green';
         event.target.style.color = 'white';
+
+        for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
+            document.querySelector('#choices').children[i].disabled = true;
+        }
     }
 
     // Wrong answer function
@@ -56,6 +64,10 @@ const answer = () => {
                 document.querySelector('#choices').children[i].style.backgroundColor = 'green';
                 document.querySelector('#choices').children[i].style.color = 'white';
             }
+        }
+
+        for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
+            document.querySelector('#choices').children[i].disabled = true;
         }
     } 
 
@@ -93,7 +105,7 @@ button.addEventListener("click", function (event) {
         answer();
     } else {
         answer();
-    }
+    };
 });
 
 
