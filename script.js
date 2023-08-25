@@ -1,7 +1,7 @@
 // Variables
 let qAndA = document.querySelector('#q-and-a')
 let score = 0
-let button = document.querySelector('#next-btn')
+let startBtn = document.querySelector('#start-btn')
 
 // Questions with answers
 // let questions = [["<h2>In what decade is the show set?</h2>\nA. 1960's\nB. 1970's\nC. 1980's\nD."]]
@@ -84,13 +84,8 @@ const answer = () => {
     }
 }
 
-const answered = () => {
-    this.event.target.addEventListener("click", function () {
-        alert("Please click the next question")
-    })
-}
-
-button.addEventListener("click", function (event) {
+/*
+startBtn.addEventListener("click", function () {
     // Hides welcome message and 'please click to start'
     document.querySelector('#welcome').style.display = 'none';
     document.querySelector('#start-p').style.display = 'none';
@@ -107,5 +102,40 @@ button.addEventListener("click", function (event) {
         answer();
     };
 });
+*/
 
+const alertFunction = () => {
+    alert("You didn't answer the question");
+}
 
+startBtn.addEventListener("click", function () {
+    // Hides welcome message and 'please click to start'
+    document.querySelector('#welcome').style.display = 'none';
+    document.querySelector('#start-p').style.display = 'none';
+
+    // Makes question & score appear, and 'start' turns to 'next question'
+    qAndA.style.display = 'block';
+    document.querySelector('#score').style.display = 'block';
+    // If next question is clicked and question has already been answered, reset the background colors of the answers.
+    if (document.querySelector('#choices').children[0].style.backgroundColor === 'green' || document.querySelector('#choices').children[1].style.backgroundColor === 'green' || document.querySelector('#choices').children[2].style.backgroundColor === 'green' || document.querySelector('#choices').children[3].style.backgroundColor === 'green') {
+        reset();
+        answer();
+    } else {
+        answer();
+    };
+    startBtn.style.display = 'none';
+    document.getElementById('next-btn').style.display = 'block';
+});
+
+const nextQuestion = () => {
+    if (document.querySelector('#choices').children[0].disabled === false) {
+        alert("You didn't answer the question")
+    } else if (document.querySelector('#choices').children[0].style.backgroundColor === 'green' || document.querySelector('#choices').children[1].style.backgroundColor === 'green' || document.querySelector('#choices').children[2].style.backgroundColor === 'green' || document.querySelector('#choices').children[3].style.backgroundColor === 'green') {
+        reset();
+        answer();
+    } else {
+        answer();
+    };
+}
+
+document.querySelector('#next-btn').addEventListener("click", nextQuestion);

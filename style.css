@@ -64,7 +64,7 @@ h1 {
     font-size: 1.2rem;
 }
 
-#next-btn {
+#start-btn {
     border: 1px solid black;
     background: green;
     color: white;
@@ -75,7 +75,19 @@ h1 {
     font-size: 1.2rem;
 }
 
-#next-btn:hover {
+#next-btn {
+    border: 1px solid black;
+    background: green;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 50px;
+    width: 90%;
+    font-size: 1.2rem;
+    display: none;
+    margin: 10px auto;
+}
+
+#next-btn:hover, #start-btn:hover {
     background: rgb(0, 83, 0);
     transition: 0.5s;
     cursor: pointer;
