@@ -1,11 +1,9 @@
-// Variables
-let qAndA = document.querySelector('#q-and-a')
-let score = 0
-let startBtn = document.querySelector('#start-btn')
-
-// Questions with answers
-// let questions = [["<h2>In what decade is the show set?</h2>\nA. 1960's\nB. 1970's\nC. 1980's\nD."]]
-
+let maxQuestions = 10;
+let choices = Array.from(document.querySelectorAll('.choice'));
+let question = document.querySelector('#question');
+let score = 0;
+let acceptingAnswers = true;
+let questionCounter = 0;
 let questions = [
     {
         question: "In what decade is the show set?",
@@ -47,102 +45,83 @@ let questions = [
         question: "What is the name of the Russian scientist who helps the main characters in season 3?",
         choices: ["A. Alexei", "B. Brenner", "C. Vladimir", "D. Shevchenko"],
         answer: "A. Alexei"
-    }
-    ]
+    },
 
-// Resets choice backgrounds to white for next question
-const reset = () => {
-    for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-        document.querySelector('#choices').children[i].style.backgroundColor = 'white';
-        document.querySelector('#choices').children[i].style.color = 'black';
-    }
+    {
+        question: "What is the name of the lab that is responsible for opening a portal to the Upside Down?",
+        choices: ["A. Stan's Steelworks", "B. Brenner CIA", "C. Unknown", "D. Hawkins National Laboratory"],
+        answer: "D. Hawkins National Laboratory"
+    },
 
-    for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-        document.querySelector('#choices').children[i].disabled = false;
+    {
+        question: "Which two characters worked at The Hawkins Post before getting fired?",
+        choices: ["A. Mike and El", "B. Jonathan and Nancy", "C. Steve and Robin", "D. Billy and Heather"],
+        answer: "B. Jonathan and Nancy"
+    },
+
+    {
+        question: "What game do the boys of Stranger Things like to play?",
+        choices: ["A. Dungeons and Dragons", "B. Fortnite", "C. Monopoly", "D. Cops and Robbers"],
+        answer: "A. Dungeons and Dragons"
     }
+]
+
+const startGame = () => {
+    score = 0;
+    acceptingAnswers = true;
+    questionCounter = 0;
+    nextQuestion();
 }
-
-// Function gets a random question and replaces text in Q and A section with
-// the question and choices
-const answer = () => {
-    let randNum = Math.floor(Math.random() * questions.length);
-
-    // Correct answer function
-    const correctAnswer = (event) => {
-        console.log("ran")
-        score ++;
-        console.log(score);
-        document.querySelector('#score').innerText = `Score: ${score}`;
-        // Changes background color of clicked answer to green and text color to white
-        event.target.style.backgroundColor = 'green';
-        event.target.style.color = 'white';
-
-        for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-            document.querySelector('#choices').children[i].disabled = true;
-        }
-    }
-
-    // Wrong answer function
-    const wrongAnswer = (event) => {
-        score = 0;
-        document.querySelector('#score').innerText = `Score: ${score}`;
-        // Changes background color of clicked answer to red and text color to white
-        event.target.style.backgroundColor = 'red';
-        event.target.style.color = 'white';
-
-        for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-            if (document.querySelector('#choices').children[i].innerText === questions[randNum].answer) {
-                document.querySelector('#choices').children[i].style.backgroundColor = 'green';
-                document.querySelector('#choices').children[i].style.color = 'white';
-            }
-        }
-
-        for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-            document.querySelector('#choices').children[i].disabled = true;
-        }
-    } 
-
-    document.getElementById('question').innerText = questions[randNum].question;
-    // Goes through each button and adds a choice to it. Determines whether or
-    // not it's the answer and adds the correct answer or wrong answer function
-    for (let i = 0; i < document.querySelector('#choices').children.length; i++) {
-        document.querySelector('#choices').children[i].innerText = questions[randNum].choices[i];
-        if (document.querySelector('#choices').children[i].innerText === questions[randNum].answer) {
-            document.querySelector('#choices').children[i].addEventListener("click", correctAnswer)
-        } else {
-            document.querySelector('#choices').children[i].addEventListener("click", wrongAnswer)
-        }
-    }
-}
-
-startBtn.addEventListener("click", function () {
-    // Hides welcome message and 'please click to start'
-    document.querySelector('#welcome').style.display = 'none';
-    document.querySelector('#start-p').style.display = 'none';
-
-    // Makes question & score appear, and 'start' turns to 'next question'
-    qAndA.style.display = 'block';
-    document.querySelector('#score').style.display = 'block';
-    // If next question is clicked and question has already been answered, reset the background colors of the answers.
-    if (document.querySelector('#choices').children[0].style.backgroundColor === 'green' || document.querySelector('#choices').children[1].style.backgroundColor === 'green' || document.querySelector('#choices').children[2].style.backgroundColor === 'green' || document.querySelector('#choices').children[3].style.backgroundColor === 'green') {
-        reset();
-        answer();
-    } else {
-        answer();
-    };
-    startBtn.style.display = 'none';
-    document.getElementById('next-btn').style.display = 'block';
-});
 
 const nextQuestion = () => {
-    if (document.querySelector('#choices').children[0].disabled === false) {
-        alert("You didn't answer the question")
-    } else if (document.querySelector('#choices').children[0].style.backgroundColor === 'green' || document.querySelector('#choices').children[1].style.backgroundColor === 'green' || document.querySelector('#choices').children[2].style.backgroundColor === 'green' || document.querySelector('#choices').children[3].style.backgroundColor === 'green') {
-        reset();
-        answer();
+    document.querySelector('#barFill').style.width = `${(questionCounter/maxQuestions) * 100}%`
+    if (questionCounter >= maxQuestions) {
+        acceptingAnswers = false;
+        document.querySelector('#score').style.display = 'none';
+        document.querySelector('#progressBar').style.display = 'none';
+        question.innerText = `Out of a possible score of 10, you scored ${score}! That is good for a ${Math.round((score/maxQuestions) * 100)}%!`;
+        for (const choice of choices) {
+            choice.style.display = 'none';
+        };
+        document.querySelector('#playAgain').style.display = 'inline';
+        document.querySelector('#demogorgon').style.display = 'inline';
+        document.querySelector('#demogorgon').style.width = '300px';
+        document.querySelector('#demogorgon').style.marginTop = '20px';
     } else {
-        answer();
-    };
+        acceptingAnswers = true;
+        question.innerText = questions[questionCounter].question;
+        for (let i = 0; i < choices.length; i++) {
+            choices[i].style.background = 'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(119,0,20,1) 71%, rgba(255,0,0,1) 95%)'
+            choices[i].innerText = questions[questionCounter].choices[i]
+        }
+    }
 }
 
-document.querySelector('#next-btn').addEventListener("click", nextQuestion);
+choices.forEach(function(choice) {
+    choice.addEventListener("click", function (event) {
+        if (!acceptingAnswers) {
+            return;
+        } else if (event.target.innerText === questions[questionCounter].answer) {
+            score ++;
+            choice.style.background = 'green';
+            acceptingAnswers = false;
+            questionCounter++;
+            document.querySelector('#score').innerText = `Score: ${score}`;
+            document.querySelector('#barFill').style.width = `${(questionCounter/maxQuestions) * 100}%`;
+        } else {
+            choice.style.background = 'red';
+            acceptingAnswers = false;
+            questionCounter++;
+            document.querySelector('#barFill').style.width = `${(questionCounter/maxQuestions) * 100}%`;
+        };
+
+        setTimeout(nextQuestion, 1000)
+    })
+})
+
+startGame();
+
+document.querySelector('#playAgain').addEventListener("click", startGame());
+    
+// Add event listeners to buttons
+// Next question function should run when button is clicked

@@ -9,90 +9,139 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-size: 62.5%;
 }
 
-h1 {
-    color: white;
-    text-align: center;
-    font-size: 3rem;
-    padding-top: 10px;
-}
-
-#main-div {
-    background: white;
-    min-width: 400px;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 50px;
-    padding: 15px 0px;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#main-div h2, #main-div p {
-    padding: 5px 20px;
-}
-
-#start-p {
-    display: block;
-}
-
-#welcome {
-    display: block;
-}
-
-#q-and-a {
-    display: none;
-}
-
-#score {
-    display: none;
-}
-
-#question {
-    margin-bottom: 10px;
-}
-
-.choice-btn {
+#start-div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     width: 90%;
-    background: none;
-    border: 1px solid grey;
-    border-radius: 15px;
-    padding: 15px 0px;
-    margin-top: 10px;
-    font-size: 1.2rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#start-div h1 {
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 5rem;
+    padding: 200px 0px 20px 0px;
 }
 
 #start-btn {
-    border: 1px solid black;
-    background: green;
-    color: white;
+    width: 300px;
+    padding: 20px 100px;
+    font-size: 3rem;
     border-radius: 20px;
-    padding: 10px 50px;
-    margin-top: 15px;
-    width: 50%;
-    font-size: 1.2rem;
+    background: black;
+    color: white;
+    border: none;
 }
 
-#next-btn {
-    border: 1px solid black;
-    background: green;
-    color: white;
-    border-radius: 20px;
-    padding: 10px 50px;
-    width: 90%;
-    font-size: 1.2rem;
-    display: none;
-    margin: 10px auto;
-}
-
-#next-btn:hover, #start-btn:hover {
-    background: rgb(0, 83, 0);
-    transition: 0.5s;
+#start-btn:hover {
     cursor: pointer;
+    background: linear-gradient(#770014, #000000);
+    box-shadow: rgba(101, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#start-div a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Quiz page */
+
+#quiz-div {
+    background-color: white;
+    width: 70%;
+    min-width: 400px;
+    margin: 30px auto 0px auto;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 5px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media only screen and (min-width: 768px) {
+    #quiz-div {
+        margin-top: 75px;
+    }
+}
+
+#progressScore {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#progressBar {
+    height: 20px;
+    width: 120px;
+    border: 2px solid black;
+}
+
+#barFill {
+    background-color: green;
+    height: 100%;
 }
 
 #score {
-    margin-top: 10px;
+    font-size: 2.2rem;
+}
+
+#question {
+    font-size: 4rem;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+}
+
+.choice {
+    width: 100%;
+    font-size: 2.7rem;
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(119,0,20,1) 71%, rgba(255,0,0,1) 95%);
+    color: white;
+    border: none;
+    margin-top: 20px;
+    width: 80%;
+    padding: 5px 0px;
+    border-radius: 10px;
+}
+
+.choice:hover, #playAgain:hover {
+    background: radial-gradient(circle, rgba(119,0,20,1) 30%, rgba(2,0,36,1) 69%, rgba(255,0,0,1) 97%);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+#quiz-div a {
+    text-decoration: none;
+    width: 300px;
+    display: inline;
+    text-align: center;
+}
+
+#playAgain {
+    display: none;
+    text-decoration: none;
+    width: 100%;
+    font-size: 2.7rem;
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(119,0,20,1) 71%, rgba(255,0,0,1) 95%);
+    color: white;
+    border: none;
+    margin-top: 20px;
+    width: 80%;
+    padding: 5px 0px;
+    border-radius: 10px;
+}
+
+#demogorgon {
+    display: none;
 }
